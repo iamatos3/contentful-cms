@@ -7,11 +7,11 @@ const client = createClient({
   accessToken: 'JJHTsK70yuHGbtSOWZHZGN8urcs80B0Lh6041F40KR4',
 });
 
-const useFetchProjects = () => {
+export const useFetchProjects = () => {
   const [loading, setLoading] = useState(true)
   const [projects, setProjects] = useState([])
 
-  const getData = async() => {
+  const getData = async () => {
     try {
       const response = await client.getEntries({ content_type: 'projects' });
       const projects = response.items.map((item) => {
@@ -31,5 +31,5 @@ const useFetchProjects = () => {
   useEffect(() => {
     getData();
   }, []);
-
+  return { loading, projects };
 };
